@@ -143,6 +143,52 @@ transactions relating to the work via COALA IP.
 ## REST API
 
 
+### Register a Composition
+
+POST /v1/compositions
+
+```
+Request
+Headers
+X-OMI-Version: 1.0
+Content-Type: application/json
+
+Body
+{
+    "title": "Crystallize",
+    "iswc": "US-TEY-09-00057",
+    "composers": [
+        {
+            "name": "Lindsey Stirling",
+            "ipi": "I-000000229-7",
+            "isni": "0000 0004 0314 2012",
+            "split": 1
+        }
+    ],
+    "songwriters": [
+        {
+            "name": "Lindsey Stirling",
+            "ipi": "I-000000229-7",
+            "isni": "0000 0004 0314 2012",
+            "split": 1
+        }
+    ],
+    "publishers": [
+        {
+            "name": "Digital Empire",
+            "split": 1
+        }
+    ]
+}
+
+Response
+
+201 Created
+
+The composition was successfully registered.
+```
+
+
 ### Register a Manifestation
 
 In order to register the manifestation on BigchainDB as transactions on a

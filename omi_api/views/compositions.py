@@ -52,7 +52,7 @@ class CompositionListApi(Resource):
         work_jsonld = work.to_jsonld()
         work_jsonld['@id'] = work.persist_id
 
-        return work_jsonld, 200
+        return 'The composition was successfully registered.', 200
 
 
 composition_api.add_resource(CompositionListApi, '/compositions',
