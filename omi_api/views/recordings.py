@@ -1,3 +1,5 @@
+import os
+
 from flask import Blueprint
 from flask_restful import reqparse, Resource, Api
 
@@ -13,50 +15,42 @@ recording_views = Blueprint('recording_views', __name__)
 recording_api = Api(recording_views)
 
 
-class RecordingApi(Resource):
-    def get(self, entity_id):
-        recording = entities.Manifestation.from_persist_id(
-            entity_id, plugin=coalaip.plugin, force_load=True)
-        return recording.to_jsonld()
-
-
 class RecordingListApi(Resource):
     def post(self):
         parser = reqparse.RequestParser()
-        #TODO: Change to parse OMI body
-        #parser.add_argument('manifestation', type=manifestation_model,
-        #                    required=True, location='json')
-        #parser.add_argument('work', type=work_model, required=True,
-        #                    location='json')
-        #parser.add_argument('copyrightHolder', type=user_model, required=True,
-        #                    location='json')
-        #args = parser.parse_args()
 
-        #manifestation = args['manifestation']
-        #work = args['work']
+        # These are the required parameters
+        parser.add_argument('title', type=str, required=True, location='json')
+        parser.add_argument('composers', type=list, required=True,
+                            location='json')
+        parser.add_argument('songwriters', type=list, required=True,
+                            location='json')
+        parser.add_argument('publishers', type=list, required=True,
+                            location='json')
+        args = parser.parse_args()
 
-        #copyright_holder = args['copyrightHolder']
-        #copyright_holder = {
-        #    'public_key': copyright_holder.pop('publicKey'),
-        #    'private_key': copyright_holder.pop('privateKey')
-        #}
+        # Here we're transforming from OMI to COALA
+        work = {
+            'name': args['title'],
+            'composers': args['composers'],
+            'songwriters': args['songwriters'],
+            'publishers': args['publishers'],
+        }
 
-        #copyright_, manifestation, work = coalaip.register_manifestation(
-        #    manifestation_data=manifestation,
-        #    copyright_holder=copyright_holder,
-        #    work_data=work)
+        copyright_holder = {
+            "public_key": os.environ.get('OMI_PUBLIC_KEY', None),
+            "private_key": os.environ.get('OMI_PRIVATE_KEY', None)
+        }
 
-        # Add the appropraite @id to the JSON-LD
-        res = {}
-        #for (entity, id_template, key) in [
-        #        (copyright_, '../rights/{}', 'copyright'),
-        #        (manifestation, '{}', 'manifestation'),
-        #        (work, '../works/{}', 'work')]:
-        #    ld_data = entity.to_jsonld()
-        #    ld_data['@id'] = id_template.format(entity.persist_id)
-        #    res[key] = ld_data
+        # TODO: Do a mongodb query to extract the id of the work
 
-        return res
+        copyright_, manifestation, work = coalaip.register_manifestation(
+            manifestation_data=manifestation,
+            copyright_holder=copyright_holder,
+            work_data=work
+        )
+
+        return 'The recording was successfully registered.', 200
 
 
 recording_api.add_resource(RecordingListApi, '/recordings',

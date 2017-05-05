@@ -1,3 +1,5 @@
+import os
+
 from flask import Blueprint
 from flask_restful import reqparse, Resource, Api
 
@@ -13,11 +15,6 @@ composition_api = Api(composition_views)
 
 
 class CompositionListApi(Resource):
-    #def get(self, entity_id):
-    #    composition = entities.Work.from_persist_id(
-    #        entity_id, plugin=coalaip.plugin, force_load=True)
-    #    return composition.to_jsonld()
-
     def post(self):
         parser = reqparse.RequestParser()
 
@@ -40,8 +37,8 @@ class CompositionListApi(Resource):
         }
 
         copyright_holder = {
-            "public_key": "Cxj6Pct7T2hLhUh455tbvDWkVDY1vW5aoRGHZCtQkNKQ",
-            "private_key": "8vVgr68Cb5RzUm89nkALvVBmmSoBdC58MTAmqGr8HfYy",
+            "public_key": os.environ.get('OMI_PUBLIC_KEY', None),
+            "private_key": os.environ.get('OMI_PRIVATE_KEY', None)
         }
 
         work = coalaip.register_work(
