@@ -3,7 +3,7 @@ from flask_restful import Resource, Api
 
 from coalaip import CoalaIp, entities
 from coalaip_bigchaindb.plugin import Plugin
-from web.utils import get_bigchaindb_api_url
+from omi_api.utils import get_bigchaindb_api_url
 
 
 coalaip = CoalaIp(Plugin(get_bigchaindb_api_url()))

@@ -1,4 +1,4 @@
-from web.server import create_app
+from omi_api.server import create_app
 
 from flask import url_for
 import pytest

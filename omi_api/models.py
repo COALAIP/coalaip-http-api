@@ -1,4 +1,4 @@
-from web.utils import parse_model
+from omi_api.utils import parse_model
 
 
 recording_model = parse_model(['name', 'datePublished', 'url'])
