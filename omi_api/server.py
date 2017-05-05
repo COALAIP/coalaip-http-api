@@ -62,8 +62,8 @@ def create_app(settings):
 
     app.debug = settings.get('debug', False)
 
-    app.register_blueprint(recording_views, url_prefix='/api/v1')
     app.register_blueprint(composition_views, url_prefix='/api/v1')
+    app.register_blueprint(recording_views, url_prefix='/api/v1')
     return app
 
 

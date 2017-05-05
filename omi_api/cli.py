@@ -39,7 +39,9 @@ def run():
         'bind': '{hostname}:{port}'.format(hostname=hostname, port=port),
         'cors_protection': cors_protection,
         'workers': 1,
-        'threads': 1
+        'threads': 1,
+        # TODO: Remove this again
+        'debug': True,
     }
     app_server = create_server(settings)
     app_server.run()
