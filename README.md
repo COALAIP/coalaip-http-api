@@ -1,4 +1,8 @@
-# COALA IP HTTP Wrapper
+# OMI MVI 1.0
+
+## Architecture
+![img_20170505_171444](https://cloud.githubusercontent.com/assets/2758453/25767724/41aab2c2-31fc-11e7-9c9d-250693a9daef.jpg)
+![img_20170505_171428](https://cloud.githubusercontent.com/assets/2758453/25767726/42b21a66-31fc-11e7-8816-5e00f0bd178b.jpg)
 
 
 
