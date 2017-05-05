@@ -1,8 +1,27 @@
 import os
+
+import click
+from bigchaindb_driver.crypto import generate_keypair
+
 from omi_api.server import create_server
 
 
-def main():
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+def keypair():
+    keypair = generate_keypair()
+    click.echo(click.style('Copy paste those values in your env file:', fg='white'))
+    click.echo(click.style('OMI_PUBLIC_KEY={}'.format(keypair.public_key), fg='green'))
+    click.echo(click.style('OMI_PRIVATE_KEY={}'.format(keypair.private_key), fg='green'))
+
+
+
+@cli.command()
+def run():
     # Double check in case the environment variable is sent via Docker,
     # which will send empty strings for missing environment variables
     hostname = os.environ.get('API_HOST', None)
@@ -27,4 +46,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    run()
