@@ -1,34 +1,17 @@
 # COALA IP HTTP Wrapper
 
-> A HTTP wrapper for [pycoalaip](https://github.com/bigchaindb/pycoalaip).
 
 
 ## Why?
 
-[pycoalaip](https://github.com/bigchaindb/pycoalaip) is Python-specific.
-Furthermore all underlying dependencies are written in Python, which means
-that parties interested in COALA IP would have to re-implement large parts of
-their logic in their programming language to make use of COALA IP.
-To solve this problem in the short-term, this library exposes a RESTful web
-interface (runnable in Docker) of the functionalities provided in
-[pycoalaip](https://github.com/bigchaindb/pycoalaip).
 
 
 ## What's the status of this?
 
-Super-pre-alpha. At the moment all you can do is hit against two endpoints that
-are being exposed. Minimal error paths are provided.
-This package and [pycoalaip](https://github.com/bigchaindb/pycoalaip)
-will probably mature rather quickly as we're actively developing them
-currently.
 
 
 ## Can I use this in production?
 
-No. Currently we're hitting against a BigchainDB instance running in
-quasi "regtest" mode. Its never been used in production either.
-In its current state, this package can and should be used to experiment with
-COALA IP.
 
 
 ## OK, how can I start experimenting?
@@ -140,37 +123,13 @@ Let's assume you have an artwork you'd like to loan to someone else. These are
 the steps you'll need to follow in order to register the work and any
 transactions relating to the work via COALA IP.
 
-1. First, [create some users](#create-users) for both yourself and those
-   "someone elses"
-1. [Register your artwork as a Manifestation](#reigster-a-manifestation)
-1. [Derive a special "usage" Right](#register-a-right-allowed-by-another-right-or-copyright)
-   from the Copyright that resulted from registering your artwork
-1. Finally, [transfer that special "usage" Right](#transfer-a-right) to someone
-   else, optionally including a contract and other information as part of the
-   transfer.
+
+1.
+2.
+3.
 
 
 ## REST API
-
-
-### Create Users
-
-This call will not store any data on the running instance of BigchainDB.
-It simply generates a public/private key-pair that can be used in a
-POST-manifestation call.
-
-```
-POST /api/v1/users/
-HEADERS {"Content-Type": "application/json"}
-
-PAYLOAD: None
-
-RETURNS:
-{
-    "publicKey": "<base58 string>",
-    "privateKey": "<base58 string>",
-}
-```
 
 
 ### Register a Manifestation
