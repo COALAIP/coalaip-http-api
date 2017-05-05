@@ -54,6 +54,7 @@ $ pip install -e .
 $ omi-api keypair
 # This will generate a new keypair you have to copy paste
 # to my_new_env
+$ omi-api run
 ```
 
 
