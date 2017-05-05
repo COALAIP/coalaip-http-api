@@ -14,9 +14,9 @@ def cli():
 @cli.command()
 def keypair():
     keypair = generate_keypair()
-    click.echo(click.style('Copy paste those values in your env file:', fg='white'))
-    click.echo(click.style('OMI_PUBLIC_KEY={}'.format(keypair.public_key), fg='green'))
-    click.echo(click.style('OMI_PRIVATE_KEY={}'.format(keypair.private_key), fg='green'))
+    click.echo('Copy paste those values in your env file:')
+    click.echo('OMI_PUBLIC_KEY={}'.format(keypair.public_key))
+    click.echo('OMI_PRIVATE_KEY={}'.format(keypair.private_key))
 
 
 
