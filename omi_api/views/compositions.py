@@ -6,6 +6,7 @@ from flask_restful import reqparse, Resource, Api
 from coalaip import CoalaIp, entities
 from coalaip_bigchaindb.plugin import Plugin
 from omi_api.utils import get_bigchaindb_api_url
+from omi_api.queries import bdb_find
 
 
 coalaip = CoalaIp(Plugin(get_bigchaindb_api_url()))
@@ -15,6 +16,26 @@ composition_api = Api(composition_views)
 
 
 class CompositionListApi(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('title', type=str)
+        parser.add_argument('name', type=str)
+        #TODO add all other parameters
+        args = dict(parser.parse_args())
+
+        res = bdb_find(query=args, _type='AbstractWork')
+        resp = []
+        for doc in res:
+            doc = doc['block']['transactions']['asset']['data']
+            doc = {
+                'title': doc['name'],
+                'composers': doc['composers'],
+                'songwriters': doc['songwriters'],
+                'publishers': doc['publishers'],
+            }
+            resp.append(doc)
+        return resp
+
     def post(self):
         parser = reqparse.RequestParser()
 

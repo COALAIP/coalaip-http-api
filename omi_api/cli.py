@@ -1,14 +1,26 @@
 import os
 
 import click
+import pymongo
 from bigchaindb_driver.crypto import generate_keypair
 
 from omi_api.server import create_server
+from omi_api.queries import bdb_coll
 
 
 @click.group()
 def cli():
     pass
+
+
+@cli.command()
+def indexes():
+    base = 'block.transactions.asset.data'
+    indexes = ['iswc', 'isrc', 'title', 'artists.name', 'composers.name',
+               'songwriters.name', 'publishers.name', 'name']
+    for i in indexes:
+        bdb_coll().create_index([('{}.{}'.format(base, i),
+                                        pymongo.ASCENDING)])
 
 
 @cli.command()

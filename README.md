@@ -156,7 +156,6 @@ POST /v1/compositions
 ```
 Request
 Headers
-X-OMI-Version: 1.0
 Content-Type: application/json
 
 Body
@@ -192,6 +191,46 @@ Response
 201 Created
 
 The composition was successfully registered.
+```
+
+
+### Register a Recording
+
+POST /v1/recordings
+
+```
+Request
+Headers
+Content-Type: application/json
+
+Body
+{
+    "title": "Crystallize",
+    "isrc": "US-TEY-09-00057",
+    "labels": [
+        {
+            "id": "string",
+            "name": "string"
+        }
+    ],
+    "artists": [
+        {
+            "name": "Lindsey Stirling",
+            "isni": "0000 0004 0314 2012"
+        }
+    ],
+    "released": "01/01/1970",
+    "duration": "00:02:16",
+    "versionTitle": "Hello, world!",
+    "albumTitle": "Hello, world!"
+}
+
+
+Response
+
+201 Created
+
+The recording was successfully registered.
 ```
 
 

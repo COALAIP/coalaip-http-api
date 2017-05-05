@@ -10,6 +10,7 @@ install_requires = [
     'flask-restful>=0.3.5',
     'gunicorn>=19.6.0',
     'flask-cors==3.0.2',
+    'pymongo~=3.4',
 ]
 
 tests_require = [
