@@ -14,7 +14,6 @@ from flask_cors import CORS
 
 from web.views.users import user_views
 from web.views.manifestations import manifestation_views
-from web.views.rights import right_views
 from web.views.works import work_views
 
 
@@ -67,7 +66,6 @@ def create_app(settings):
 
     app.register_blueprint(user_views, url_prefix='/api/v1')
     app.register_blueprint(manifestation_views, url_prefix='/api/v1')
-    app.register_blueprint(right_views, url_prefix='/api/v1')
     app.register_blueprint(work_views, url_prefix='/api/v1')
     return app
 
