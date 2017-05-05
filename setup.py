@@ -34,7 +34,7 @@ docs_require = [
 ]
 
 setup(
-    name='omi-http-api',
+    name='omi_api',
     version='0.0.1.dev1',
     description='OMI HTTP API, using CoalaIP schema and BigchainDB as storage.',
     author='BigchainDB',
@@ -62,5 +62,5 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    entry_points={'console_scripts': ['omi-http=web.cli:main']}
+    entry_points={'console_scripts': ['omi-http=omi_api.cli:main']}
 )

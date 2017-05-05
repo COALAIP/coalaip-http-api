@@ -1,5 +1,5 @@
 import os
-from web.server import create_server
+from omi_api.server import create_server
 
 
 def main():

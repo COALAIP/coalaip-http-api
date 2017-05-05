@@ -11,8 +11,8 @@ import gunicorn.app.base
 from flask import Flask
 from flask_cors import CORS
 
-from web.views.recordings import recordings_views
-from web.views.compositions import composition_views
+from omi_api.views.recordings import recording_views
+from omi_api.views.compositions import composition_views
 
 
 class StandaloneApplication(gunicorn.app.base.BaseApplication):
@@ -92,5 +92,5 @@ def create_server(settings):
 
 
 if __name__ == '__main__':
-    from web import cli
+    from omi_api import cli
     cli.main()
