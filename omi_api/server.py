@@ -89,8 +89,3 @@ def create_server(settings):
     app = create_app(settings)
     standalone = StandaloneApplication(app, settings)
     return standalone
-
-
-if __name__ == '__main__':
-    from omi_api import cli
-    cli.main()

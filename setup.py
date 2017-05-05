@@ -10,7 +10,8 @@ install_requires = [
     'flask>=0.11.1',
     'flask-restful>=0.3.5',
     'gunicorn>=19.6.0',
-    'flask-cors==3.0.2'
+    'flask-cors==3.0.2',
+    'colorama~=0.3.0'
 ]
 
 tests_require = [
@@ -62,5 +63,5 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    entry_points={'console_scripts': ['omi-http=omi_api.cli:main']}
+    entry_points={'console_scripts': ['omi-http=omi_api.cli:cli']}
 )
