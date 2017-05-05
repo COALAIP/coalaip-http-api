@@ -52,6 +52,17 @@ $ python web/server.py
 ```
 
 
+### Run on your Linux/Mac machine directly
+
+```
+$ cp .env_template .env
+$ vim .env
+# configure your setup (e.g. under which port BigchainDB is running)
+$ set -a
+$ source .env
+$ source path to your virtal env
+```
+
 ### For integration (or for non-Linux development)
 
 Use Docker :whale:.
