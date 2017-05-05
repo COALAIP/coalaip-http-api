@@ -34,12 +34,12 @@ docs_require = [
 ]
 
 setup(
-    name='coalaip-http-api',
+    name='omi-http-api',
     version='0.0.1.dev1',
-    description="An HTTP wrapper for CoalaIP",
-    author="BigchainDB",
+    description='OMI HTTP API, using CoalaIP schema and BigchainDB as storage.',
+    author='BigchainDB',
     author_email='dev@bigchaindb.com',
-    url='https://github.com/bigchaindb/coalaip-http-api',
+    url='https://github.com/coalaip/omi-mvi-1.0',
     packages=find_packages(exclude=['tests*']),
     include_package_data=True,
     install_requires=install_requires,
@@ -50,9 +50,9 @@ setup(
         'docs': docs_require,
     },
     test_suite='tests',
-    license="Apache Software License 2.0",
+    license='Apache Software License 2.0',
     zip_safe=False,
-    keywords=['coalaip', 'coalaip http api', 'bigchaindb'],
+    keywords=['omi', 'coalaip', 'coalaip http api', 'bigchaindb'],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -62,4 +62,5 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
+    entry_points={'console_scripts': ['omi-http=web.cli:main']}
 )
