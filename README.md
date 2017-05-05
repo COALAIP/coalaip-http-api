@@ -39,16 +39,21 @@ Yes, [curl](https://curl.haxx.se/).
 ### For development on Linux
 
 1. You'll have to [install, configure and run BigchainDB as well as
-RethinkDB](https://bigchaindb.readthedocs.io/en/latest/quickstart.html).
+MongoDB](https://bigchaindb.readthedocs.io/en/latest/quickstart.html).
 
 2. Install and run this library using the following commands:
 
 ```
-$ git clone git@github.com:bigchaindb/coalaip-http-api.git
+$ git clone git@github.com:coalaip/omi-mvi-1.0.git
 $ virtualenv --python=python3 venv
 $ source venv/bin/activate
-$ pip install -r requirements_dev.txt
-$ python web/server.py
+$ cp .env_template my_new_env
+$ set -a
+$ source my_new_env
+$ pip install -e .
+$ omi-api keypair
+# This will generate a new keypair you have to copy paste
+# to my_new_env
 ```
 
 

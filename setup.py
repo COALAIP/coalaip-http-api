@@ -63,5 +63,5 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    entry_points={'console_scripts': ['omi-http=omi_api.cli:cli']}
+    entry_points={'console_scripts': ['omi-api=omi_api.cli:cli']}
 )
