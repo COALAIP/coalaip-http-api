@@ -11,10 +11,10 @@ turned out to be right. [We only had to make little modifications to the data
 models](https://github.com/COALAIP/omi-mvi-1.0/blob/master/omi_api/transformers.py#L3).
 To learn more about:
 
-    - the architecture
-    - how to setup this server
-    - about the OMI MVI API we implemented
-    - what we didn't get to implement
+- the architecture
+- how to setup this server
+- about the OMI MVI API we implemented
+- what we didn't get to implement
 
 read further!
 
