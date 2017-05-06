@@ -52,9 +52,7 @@ class CompositionListApi(Resource):
             copyright_holder=copyright_holder
         )
 
-        work_jsonld = work.to_jsonld()
-        work_jsonld['@id'] = work.persist_id
-        print('Work registered under: ', work.persist_id)
+        print('Work/Composition registered under: ', work.persist_id)
 
         return 'The composition was successfully registered.', 200
 

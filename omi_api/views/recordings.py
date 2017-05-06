@@ -46,15 +46,16 @@ class RecordingListApi(Resource):
             "private_key": os.environ.get('OMI_PRIVATE_KEY', None)
         }
 
-        # TODO: Do a mongodb query to extract the id of the work
-        # OR: Maybe we just register the manifestation without the work for now
-        # ?
+        _, manifestation, _= coalaip.register_manifestation(
+            manifestation_data=manifestation,
+            copyright_holder=copyright_holder,
+            work_data=None,
+            create_work=False,
+            create_copyright=False
+        )
 
-        #copyright_, manifestation, work = coalaip.register_manifestation(
-        #    manifestation_data=manifestation,
-        #    copyright_holder=copyright_holder,
-        #    work_data=work
-        #)
+        print('Manifestation/Recording registered under: ',
+              manifestation.persist_id)
         return 'The recording was successfully registered.', 200
 
 
