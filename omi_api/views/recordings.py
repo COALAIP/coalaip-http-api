@@ -1,12 +1,11 @@
 import os
 
-from flask import Blueprint
-from flask_restful import reqparse, Resource, Api
+from flask import Blueprint, request
+from flask_restful import Resource, Api
 
 from coalaip import CoalaIp, entities
 from coalaip_bigchaindb.plugin import Plugin
-from omi_api.models import recording_model
-from omi_api.utils import get_bigchaindb_api_url
+from omi_api.utils import get_bigchaindb_api_url, queryparams_to_dict
 from omi_api.queries import bdb_find
 
 
@@ -18,13 +17,7 @@ recording_api = Api(recording_views)
 
 class RecordingListApi(Resource):
     def get(self):
-        # TODO method can be generalized to utility probably
-        parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str)
-        parser.add_argument('name', type=str)
-        #TODO add all other parameters
-        args = dict(parser.parse_args())
-
+        args = queryparams_to_dict(request.args)
         res = bdb_find(query=args, _type='CreativeWork')
         resp = []
         for doc in res:

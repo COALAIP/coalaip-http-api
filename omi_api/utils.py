@@ -27,15 +27,8 @@ def get_bigchaindb_api_url():
     hostname, port = get_bigchaindb_configuration()
     return 'http://{hostname}:{port}'.format(hostname=hostname, port=port)
 
-
-def parse_model(required_fields):
-    def _parse_model(inputs):
-        for field in required_fields:
-            try:
-                value = inputs[field]
-            except KeyError:
-                raise KeyError('`{}` must be provided'.format(field))
-            if not value:
-                raise ValueError("`{}`'s value must be defined".format(field))
-        return inputs
-    return _parse_model
+def queryparams_to_dict(queryparams):
+    queryparams = dict(queryparams)
+    for k, v in queryparams.items():
+        queryparams[k] = v[0]
+    return queryparams
