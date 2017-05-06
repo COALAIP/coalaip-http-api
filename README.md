@@ -10,6 +10,7 @@ layer would be perfect to implement the OMI MVI 1.0. In fact, our hypothesis
 turned out to be right. [We only had to make little modifications to the data
 models](https://github.com/COALAIP/omi-mvi-1.0/blob/master/omi_api/transformers.py#L3).
 To learn more about:
+
     - the architecture
     - how to setup this server
     - about the OMI MVI API we implemented
@@ -65,19 +66,14 @@ $ source path to your virtal env
 - BigchainDB: http://localhost:9984/api/v1
 - MongoDB: localhost:27017
 
-Depending on your configuration though. See your `.env` file.
-
-
-### Settings
-
-The API server can be configured with a number of environment variables [see
-.env_template](./.env_template).
+Depending on your configuration though. See your `.env` file or if you haven't
+created it yet, checkout and copy our [.env_template](./.env_template).
 
 
 ## REST API
 ### Query for a Composition
 
-GET api/v1/compositions?name=Crystallize
+`GET api/v1/compositions?name=Crystallize`
 
 NOTE: You can use all sorts of query strings and mix them up.
 
@@ -116,7 +112,7 @@ Body
 
 ### Register a Composition
 
-POST api/v1/compositions
+`POST api/v1/compositions`
 
 ```
 Request
@@ -165,7 +161,7 @@ http://localhost:9984/api/v1/transactions/<id>
 
 ### Query for a Recording
 
-GET api/v1/recordings?name=Crystallize{&isrc=US-TEY-09-00057}
+`GET api/v1/recordings?name=Crystallize{&isrc=US-TEY-09-00057}`
 
 NOTE: You can use all sorts of query strings and mix them up.
 
@@ -197,7 +193,7 @@ Body
 
 ### Register a Recording
 
-POST api/v1/recordings
+`POST api/v1/recordings`
 
 ```
 Request
@@ -236,7 +232,7 @@ The recording was successfully registered.
 
 The server will log the transaction id which was used to store the recording
 in BigchainDB. You can check if how it was persisted by going to:
-http://localhost:9984/api/v1/transactions/<id>
+http://localhost:9984/api/v1/transactions/your-transaction-id
 
 
 ## What we didn't implement
