@@ -1,13 +1,13 @@
 import os
 
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_restful import reqparse, Resource, Api
 
 from coalaip import CoalaIp, entities
 from coalaip_bigchaindb.plugin import Plugin
-from omi_api.models import recording_model
-from omi_api.utils import get_bigchaindb_api_url
+from omi_api.utils import get_bigchaindb_api_url, queryparams_to_dict
 from omi_api.queries import bdb_find
+from omi_api.transformers import transform
 
 
 coalaip = CoalaIp(Plugin(get_bigchaindb_api_url()))
@@ -18,24 +18,12 @@ recording_api = Api(recording_views)
 
 class RecordingListApi(Resource):
     def get(self):
-        # TODO method can be generalized to utility probably
-        parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str)
-        parser.add_argument('name', type=str)
-        #TODO add all other parameters
-        args = dict(parser.parse_args())
-
+        args = queryparams_to_dict(request.args)
         res = bdb_find(query=args, _type='CreativeWork')
         resp = []
         for doc in res:
-            #todo this is super ugly
             doc = doc['block']['transactions']['asset']['data']
-            print(doc)
-            doc = {
-                'title': doc['name'],
-                'labels': doc['labels'],
-                'artists': doc['artists'],
-            }
+            doc = transform(doc, 'CreativeWork->Recording')
             resp.append(doc)
         return resp
 
@@ -52,27 +40,22 @@ class RecordingListApi(Resource):
                             location='json')
         args = parser.parse_args()
 
-        # Here we're transforming from OMI to COALA
-        manifestation = {
-            'name': args['title'],
-            'labels': args['labels'],
-            'artists': args['artists'],
-        }
-
+        manifestation = transform(args, 'Recording->CreativeWork')
         copyright_holder = {
             "public_key": os.environ.get('OMI_PUBLIC_KEY', None),
             "private_key": os.environ.get('OMI_PRIVATE_KEY', None)
         }
 
-        # TODO: Do a mongodb query to extract the id of the work
-        # OR: Maybe we just register the manifestation without the work for now
-        # ?
+        _, manifestation, _= coalaip.register_manifestation(
+            manifestation_data=manifestation,
+            copyright_holder=copyright_holder,
+            work_data=None,
+            create_work=False,
+            create_copyright=False
+        )
 
-        #copyright_, manifestation, work = coalaip.register_manifestation(
-        #    manifestation_data=manifestation,
-        #    copyright_holder=copyright_holder,
-        #    work_data=work
-        #)
+        print('Manifestation/Recording registered under: ',
+              manifestation.persist_id)
         return 'The recording was successfully registered.', 200
 
 

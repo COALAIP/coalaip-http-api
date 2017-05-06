@@ -1,11 +1,12 @@
 import os
 
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_restful import reqparse, Resource, Api
 
 from coalaip import CoalaIp, entities
 from coalaip_bigchaindb.plugin import Plugin
-from omi_api.utils import get_bigchaindb_api_url
+from omi_api.utils import get_bigchaindb_api_url, queryparams_to_dict
+from omi_api.transformers import transform
 from omi_api.queries import bdb_find
 
 
@@ -17,22 +18,13 @@ composition_api = Api(composition_views)
 
 class CompositionListApi(Resource):
     def get(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str)
-        parser.add_argument('name', type=str)
-        #TODO add all other parameters
-        args = dict(parser.parse_args())
-
+        args = queryparams_to_dict(request.args)
         res = bdb_find(query=args, _type='AbstractWork')
         resp = []
         for doc in res:
             doc = doc['block']['transactions']['asset']['data']
-            doc = {
-                'title': doc['name'],
-                'composers': doc['composers'],
-                'songwriters': doc['songwriters'],
-                'publishers': doc['publishers'],
-            }
+            doc = transform(doc, 'AbstractWork->Composition')
+
             resp.append(doc)
         return resp
 
@@ -49,14 +41,7 @@ class CompositionListApi(Resource):
                             location='json')
         args = parser.parse_args()
 
-        # Here we're transforming from OMI to COALA
-        work = {
-            'name': args['title'],
-            'composers': args['composers'],
-            'songwriters': args['songwriters'],
-            'publishers': args['publishers'],
-        }
-
+        work = transform(args, 'Composition->AbstractWork')
         copyright_holder = {
             "public_key": os.environ.get('OMI_PUBLIC_KEY', None),
             "private_key": os.environ.get('OMI_PRIVATE_KEY', None)
@@ -67,8 +52,7 @@ class CompositionListApi(Resource):
             copyright_holder=copyright_holder
         )
 
-        work_jsonld = work.to_jsonld()
-        work_jsonld['@id'] = work.persist_id
+        print('Work/Composition registered under: ', work.persist_id)
 
         return 'The composition was successfully registered.', 200
 
