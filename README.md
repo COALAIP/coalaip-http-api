@@ -242,6 +242,7 @@ It's more work (too much for a hackathon), but easily doable.
     - etc.
 - Might be that you're even able to query for nested fields :D BTW our QUERIES
 ARE NOT SANITIZED DON'T HACK PLS :D
+- The status endpoints
 
 
 ## FAQ
