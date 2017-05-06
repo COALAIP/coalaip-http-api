@@ -1,9 +1,7 @@
-import os
-
 from flask import Blueprint, request
 from flask_restful import reqparse, Resource, Api
 
-from coalaip import CoalaIp, entities
+from coalaip import CoalaIp
 from coalaip_bigchaindb.plugin import Plugin
 
 from omi_api import config

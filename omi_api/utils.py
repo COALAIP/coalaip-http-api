@@ -19,5 +19,6 @@ def get_bigchaindb_api_url():
 def queryparams_to_dict(queryparams):
     queryparams = dict(queryparams)
     for k, v in queryparams.items():
-        queryparams[k] = v[0]
+        if v:
+            queryparams[k] = v[0]
     return queryparams
