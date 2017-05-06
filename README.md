@@ -1,27 +1,28 @@
 # OMI MVI 1.0
 
-> An implementation of the OMI MVI 1.0 specification implemented using
-> BigchainDB and COALA IP.
+> An implementation of the [OMI](http://open-music.org/) MVI 1.0 specification implemented using
+> [BigchainDB](https://www.bigchaindb.com) and [COALA IP](https://coalaip.org).
 
 ### Wat?
 
-We though using COALA IP and BigchainDB as respecivetly data model and storage
-layer would be perfect to implement the OMI MVI 1.0. In fact, our hypothesis
-turned out to be right. [We only had to make little modifications to the data
+We thought that COALA IP + BigchainDB might be a perfect data model + storage layer to implement 
+the OMI MVI 1.0. We guessed right! [We only had to make little modifications to the data
 models](https://github.com/COALAIP/omi-mvi-1.0/blob/master/omi_api/transformers.py#L3).
-To learn more about:
 
-- the architecture
-- how to setup this server
-- about the OMI MVI API we implemented
-- what we didn't get to implement
+Read further to learn more about:
 
-read further!
+- The architecture
+- How to set up this server
+- About the OMI MVI API we implemented
+- What we didn't get to implement (yet..)
 
 Have fun!
 
-- the authors, Alberto, Tim and Trent from @bigchaindb.com (this is also how
-  you can contact us :))
+Yours,
+
+Alberto and Tim at BigchainDB (the authors); and Trent at BigchainDB, George at OMI (the encouragers:)
+
+Contact: {alberto, tim, trent}@bigchaindb.com
 
 ## Architecture
 ![img_20170505_171428](https://cloud.githubusercontent.com/assets/2758453/25767726/42b21a66-31fc-11e7-8816-5e00f0bd178b.jpg)
