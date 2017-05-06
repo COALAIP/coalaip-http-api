@@ -38,12 +38,16 @@ class RecordingListApi(Resource):
                             location='json')
         parser.add_argument('isrc', type=str, required=False,
                             location='json')
+        parser.add_argument('X-OMI-PUBLIC-KEY', type=str, required=True,
+                            location='headers')
+        parser.add_argument('X-OMI-PRIVATE-KEY', type=str, required=True,
+                            location='headers')
         args = parser.parse_args()
 
         manifestation = transform(args, 'Recording->CreativeWork')
         copyright_holder = {
-            'public_key': config.PUBLIC_KEY,
-            'private_key': config.PRIVATE_KEY
+            "public_key": args['X-OMI-PUBLIC-KEY'],
+            "private_key": args['X-OMI-PRIVATE-KEY']
         }
 
         _, manifestation, _= coalaip.register_manifestation(

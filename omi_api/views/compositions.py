@@ -41,12 +41,16 @@ class CompositionListApi(Resource):
                             location='json')
         parser.add_argument('iswc', type=str, required=False,
                             location='json')
+        parser.add_argument('X-OMI-PUBLIC-KEY', type=str, required=True,
+                            location='headers')
+        parser.add_argument('X-OMI-PRIVATE-KEY', type=str, required=True,
+                            location='headers')
         args = parser.parse_args()
 
         work = transform(args, 'Composition->AbstractWork')
         copyright_holder = {
-            'public_key': config.PUBLIC_KEY,
-            'private_key': config.PRIVATE_KEY
+            "public_key": args['X-OMI-PUBLIC-KEY'],
+            "private_key": args['X-OMI-PRIVATE-KEY']
         }
 
         work = coalaip.register_work(

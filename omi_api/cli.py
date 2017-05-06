@@ -26,10 +26,9 @@ def indexes():
 @cli.command()
 def keypair():
     keypair = generate_keypair()
-    click.echo('Copy paste those values in your env file:')
-    click.echo('OMI_PUBLIC_KEY={}'.format(keypair.public_key))
-    click.echo('OMI_PRIVATE_KEY={}'.format(keypair.private_key))
-
+    click.echo('Use these in the headers of your POST requests')
+    click.echo('X-OMI-PUBLIC-KEY: {}'.format(keypair.public_key))
+    click.echo('X-OMI-PRIVATE-KEY: {}'.format(keypair.private_key))
 
 
 @cli.command()

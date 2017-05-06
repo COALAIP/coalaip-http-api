@@ -3,6 +3,7 @@
 mappings = {
         'Recording->CreativeWork': {
             'title': 'name',
+            '@delete': ['X-OMI-PUBLIC-KEY', 'X-OMI-PRIVATE-KEY']
         },
         'CreativeWork->Recording': {
             'name': 'title',
@@ -10,6 +11,7 @@ mappings = {
         },
         'Composition->AbstractWork': {
             'title': 'name',
+            '@delete': ['X-OMI-PUBLIC-KEY', 'X-OMI-PRIVATE-KEY']
         },
         'AbstractWork->Composition': {
             'name': 'title',
