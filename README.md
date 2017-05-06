@@ -123,28 +123,22 @@ Body
 {
     "title": "Crystallize",
     "iswc": "US-TEY-09-00057",
-    "composers": [
-        {
+    "composers": [{
             "name": "Lindsey Stirling",
             "ipi": "I-000000229-7",
             "isni": "0000 0004 0314 2012",
             "split": 1
-        }
-    ],
-    "songwriters": [
-        {
+    }],
+    "songwriters": [{
             "name": "Lindsey Stirling",
             "ipi": "I-000000229-7",
             "isni": "0000 0004 0314 2012",
             "split": 1
-        }
-    ],
-    "publishers": [
-        {
+    }],
+    "publishers": [{
             "name": "Digital Empire",
             "split": 1
-        }
-    ]
+    }]
 }
 
 Response
@@ -204,18 +198,14 @@ Body
 {
     "title": "Crystallize",
     "isrc": "US-TEY-09-00057",
-    "labels": [
-        {
+    "labels": [{
             "id": "string",
             "name": "string"
-        }
-    ],
-    "artists": [
-        {
+    }],
+    "artists": [{
             "name": "Lindsey Stirling",
             "isni": "0000 0004 0314 2012"
-        }
-    ],
+    }],
     "released": "01/01/1970",
     "duration": "00:02:16",
     "versionTitle": "Hello, world!",
