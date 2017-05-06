@@ -275,3 +275,9 @@ application or run it in production. It's just a MVP.
 ### Can I just have a shell-command for this?
 
 Yes, [curl](https://curl.haxx.se/).
+
+
+### Why does Github say this repository is forked?
+
+We implemented coalaip-http-api already. It's extremely similar to this repo.
+To move fast, we just forked and refactored.
