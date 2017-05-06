@@ -236,7 +236,7 @@ however can easily be changed. MongoDB has really great wildcard text indexing.
 - A solid check if the BigchainDB blocks we're querying against are `VALID`.
 It's more work (too much for a hackathon), but easily doable.
 - Pagination and sorting on all endpoints
-- Generally we only implemented only happy paths, this also means:
+- Generally we implemented only happy paths, this also means:
     - No tests (lol)
     - Almost no error scenarios
     - etc.
