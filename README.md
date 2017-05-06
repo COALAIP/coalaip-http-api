@@ -267,3 +267,13 @@ Yes, [curl](https://curl.haxx.se/).
 
 We implemented coalaip-http-api already. It's extremely similar to this repo.
 To move fast, we just forked and refactored.
+
+
+### Can I have this for Ethereum/Bitcoin/...?
+
+Yes! COALA IP is designed to be ledger agnostic. In fact, only a few functions
+would need to be implemented to make the registration work on e.g. Ethereum.
+Specifically [these methods](https://github.com/bigchaindb/pycoalaip-bigchaindb/blob/master/coalaip_bigchaindb/plugin.py#L23). Should be fairly
+simple! Dunno about querying on those ledgers though. Please reach out to
+tim@bigchaindb.com if you're planning to do this. The COALA IP group would
+be more than happy to hold your hand in implementing!
