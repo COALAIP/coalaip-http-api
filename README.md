@@ -88,22 +88,22 @@ Body
 
 [{
     "composers": [{
+    "ipi": "I-000000229-7",
+        "isni": "0000 0004 0314 2012",
+        "name": "Lindsey Stirling",
+        "split": 1
+    }],
+    "publishers": [{
+        "name": "Digital Empire",
+        "split": 1
+    }],
+    "songwriters": [{
         "ipi": "I-000000229-7",
-            "isni": "0000 0004 0314 2012",
-            "name": "Lindsey Stirling",
-            "split": 1
-        }],
-        "publishers": [{
-            "name": "Digital Empire",
-            "split": 1
-        }],
-        "songwriters": [{
-            "ipi": "I-000000229-7",
-            "isni": "0000 0004 0314 2012",
-            "name": "Lindsey Stirling",
-            "split": 1
-        }],
-        "title": "Crystallize"
+        "isni": "0000 0004 0314 2012",
+        "name": "Lindsey Stirling",
+        "split": 1
+    }],
+    "title": "Crystallize"
 }]
 
 200 OK
