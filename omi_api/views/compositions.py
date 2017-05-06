@@ -1,10 +1,10 @@
-import os
-
 from flask import Blueprint, request
 from flask_restful import reqparse, Resource, Api
 
 from coalaip import CoalaIp, entities
 from coalaip_bigchaindb.plugin import Plugin
+
+from omi_api import config
 from omi_api.utils import get_bigchaindb_api_url, queryparams_to_dict
 from omi_api.transformers import transform
 from omi_api.queries import bdb_find
@@ -43,8 +43,8 @@ class CompositionListApi(Resource):
 
         work = transform(args, 'Composition->AbstractWork')
         copyright_holder = {
-            "public_key": os.environ.get('OMI_PUBLIC_KEY', None),
-            "private_key": os.environ.get('OMI_PRIVATE_KEY', None)
+            'public_key': config.PUBLIC_KEY,
+            'private_key': config.PRIVATE_KEY
         }
 
         work = coalaip.register_work(

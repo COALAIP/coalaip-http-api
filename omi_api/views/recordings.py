@@ -5,6 +5,8 @@ from flask_restful import reqparse, Resource, Api
 
 from coalaip import CoalaIp, entities
 from coalaip_bigchaindb.plugin import Plugin
+
+from omi_api import config
 from omi_api.utils import get_bigchaindb_api_url, queryparams_to_dict
 from omi_api.queries import bdb_find
 from omi_api.transformers import transform
@@ -42,8 +44,8 @@ class RecordingListApi(Resource):
 
         manifestation = transform(args, 'Recording->CreativeWork')
         copyright_holder = {
-            "public_key": os.environ.get('OMI_PUBLIC_KEY', None),
-            "private_key": os.environ.get('OMI_PRIVATE_KEY', None)
+            'public_key': config.PUBLIC_KEY,
+            'private_key': config.PRIVATE_KEY
         }
 
         _, manifestation, _= coalaip.register_manifestation(

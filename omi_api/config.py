@@ -1,11 +1,12 @@
 import os
 
-def get(key, default):
+def get(key, default=None):
     # Double check in case the environment variable is sent via Docker,
     # which will send empty strings for missing environment variables
     value = os.environ.get(key)
     if not value:
         return default
+    return value
 
 
 ORG_NAME = get('OMI_ORG_NAME')

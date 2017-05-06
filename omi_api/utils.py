@@ -1,5 +1,5 @@
+from omi_api import config
 from collections import namedtuple
-import os
 
 
 BigchainDBConfiguration = namedtuple('BigchainDBConfiguration', [
@@ -8,19 +8,8 @@ BigchainDBConfiguration = namedtuple('BigchainDBConfiguration', [
 ])
 
 
-# Double check in case the environment variable is sent via Docker,
-# which will send empty strings for missing environment variables
-BDB_HOST = os.environ.get('BDB_NODE_HOST', None)
-if not BDB_HOST:
-    BDB_HOST = 'localhost'
-
-BDB_PORT = os.environ.get('BDB_NODE_PORT', None)
-if not BDB_PORT:
-    BDB_PORT = '9984'
-
-
 def get_bigchaindb_configuration():
-    return BigchainDBConfiguration(BDB_HOST, BDB_PORT)
+    return BigchainDBConfiguration(config.BDB_HOST, config.BDB_PORT)
 
 
 def get_bigchaindb_api_url():
