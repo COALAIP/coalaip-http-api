@@ -1,6 +1,6 @@
 # OMI MVI 1.0
 
-> An implementation of the OMI MVI 1.0 specification implemented with
+> An implementation of the OMI MVI 1.0 specification implemented using
 > BigchainDB and COALA IP.
 
 ### Wat?
