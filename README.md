@@ -4,8 +4,6 @@
 
 This repo is an implementation of OMI MVI 1.0, using [BigchainDB](https://www.bigchaindb.com) and [COALA IP](https://coalaip.org).
 
-### Approach
-
 We thought that COALA IP + BigchainDB might be a perfect data model + storage layer to implement 
 the OMI MVI 1.0. We guessed right! [We only had to make little modifications to the data
 models](https://github.com/COALAIP/omi-mvi-1.0/blob/master/omi_api/transformers.py#L3).
