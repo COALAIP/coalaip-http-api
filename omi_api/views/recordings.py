@@ -1,12 +1,13 @@
 import os
 
 from flask import Blueprint, request
-from flask_restful import Resource, Api
+from flask_restful import reqparse, Resource, Api
 
 from coalaip import CoalaIp, entities
 from coalaip_bigchaindb.plugin import Plugin
 from omi_api.utils import get_bigchaindb_api_url, queryparams_to_dict
 from omi_api.queries import bdb_find
+from omi_api.transformers import transform
 
 
 coalaip = CoalaIp(Plugin(get_bigchaindb_api_url()))
@@ -21,14 +22,8 @@ class RecordingListApi(Resource):
         res = bdb_find(query=args, _type='CreativeWork')
         resp = []
         for doc in res:
-            #todo this is super ugly
             doc = doc['block']['transactions']['asset']['data']
-            print(doc)
-            doc = {
-                'title': doc['name'],
-                'labels': doc['labels'],
-                'artists': doc['artists'],
-            }
+            doc = transform(doc, 'CreativeWork->Recording')
             resp.append(doc)
         return resp
 
@@ -45,13 +40,7 @@ class RecordingListApi(Resource):
                             location='json')
         args = parser.parse_args()
 
-        # Here we're transforming from OMI to COALA
-        manifestation = {
-            'name': args['title'],
-            'labels': args['labels'],
-            'artists': args['artists'],
-        }
-
+        manifestation = transform(args, 'Recording->CreativeWork')
         copyright_holder = {
             "public_key": os.environ.get('OMI_PUBLIC_KEY', None),
             "private_key": os.environ.get('OMI_PRIVATE_KEY', None)
