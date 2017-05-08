@@ -39,7 +39,7 @@ class CompositionListApi(Resource):
                             location='json')
         parser.add_argument('publishers', type=list, required=True,
                             location='json')
-        parser.add_argument('iswc', type=str, required=True,
+        parser.add_argument('iswc', type=str, required=False,
                             location='json')
         args = parser.parse_args()
 
