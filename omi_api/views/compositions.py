@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_restful import reqparse, Resource, Api
 
-from coalaip import CoalaIp, entities
+from coalaip import CoalaIp
 from coalaip_bigchaindb.plugin import Plugin
 
 from omi_api import config
@@ -38,6 +38,8 @@ class CompositionListApi(Resource):
         parser.add_argument('songwriters', type=list, required=True,
                             location='json')
         parser.add_argument('publishers', type=list, required=True,
+                            location='json')
+        parser.add_argument('iswc', type=str, required=True,
                             location='json')
         args = parser.parse_args()
 

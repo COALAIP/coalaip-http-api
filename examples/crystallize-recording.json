@@ -1,0 +1,21 @@
+{
+    "title": "Crystallize",
+    "isrc": "US-TEY-09-00057",
+    "labels": [
+        {
+            "id": "string",
+            "name": "string"
+        }
+    ],
+    "artists": [
+        {
+            "name": "Lindsey Stirling",
+            "isni": "0000 0004 0314 2012"
+        }
+    ],
+    "released": "01/01/1970",
+    "duration": "00:02:16",
+    "versionTitle": "Hello, world!",
+    "albumTitle": "Hello, world!"
+}
+

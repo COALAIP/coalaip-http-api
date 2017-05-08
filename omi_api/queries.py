@@ -34,3 +34,7 @@ def bdb_find(query, _type):
 
     cur = bdb_coll().aggregate(pipeline)
     return cur
+
+
+def unpack(doc):
+    return doc['block']['transactions']['asset']['data']

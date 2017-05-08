@@ -13,6 +13,7 @@ from flask_cors import CORS
 
 from omi_api.views.recordings import recording_views
 from omi_api.views.compositions import composition_views
+from omi_api.views.recordings_compositions import recordings_compositions_views
 
 
 class StandaloneApplication(gunicorn.app.base.BaseApplication):
@@ -64,6 +65,7 @@ def create_app(settings):
 
     app.register_blueprint(composition_views, url_prefix='/api/v1')
     app.register_blueprint(recording_views, url_prefix='/api/v1')
+    app.register_blueprint(recordings_compositions_views, url_prefix='/api/v1')
     return app
 
 
