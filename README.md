@@ -4,7 +4,7 @@
 
 This repo is an implementation of OMI MVI 1.0, using [BigchainDB](https://www.bigchaindb.com) and [COALA IP](https://coalaip.org).
 
-We thought that COALA IP + BigchainDB might be a perfect data model + storage layer to implement 
+We thought that COALA IP + BigchainDB might be a perfect data model + storage layer to implement
 the OMI MVI 1.0. We guessed right! [We only had to make little modifications to the data
 models](https://github.com/COALAIP/omi-mvi-1.0/blob/master/omi_api/transformers.py#L3).
 
@@ -44,8 +44,7 @@ $ set -a
 $ source my_new_env
 $ pip install -e .
 $ omi-api keypair
-# This will generate a new keypair you have to copy paste
-# to my_new_env
+# This will generate a new keypair you can use to sign POST requests.
 $ omi-api run
 ```
 
@@ -118,6 +117,8 @@ Body
 Request
 Headers
 Content-Type: application/json
+X-OMI-PUBLIC-KEY: your-public-key
+X-OMI-PRIVATE-KEY: your-private-key
 
 Body
 {
@@ -193,6 +194,8 @@ Body
 Request
 Headers
 Content-Type: application/json
+X-OMI-PUBLIC-KEY: your-public-key
+X-OMI-PRIVATE-KEY: your-private-key
 
 Body
 {
@@ -243,6 +246,18 @@ It's more work (too much for a hackathon), but easily doable.
 - Might be that you're even able to query for nested fields :D BTW our QUERIES
 ARE NOT SANITIZED DON'T HACK PLS :D
 - The status endpoints
+- We added two headers for signing BigchainDB transactions: `X-OMI-PUBLIC-KEY`
+and `X-OMI-PRIVATE-KEY`
+
+
+## Signing BigchainDB transactions
+
+Currently BigchainDB's transactions are created and signed on the server. We
+acknowledge that this is a showstopping practise. Implementing a full-on secure
+client-server transaction signing protocol wasn't possible in the timeframe we
+had. We plan to make it happen though! If you have thoughts or ideas on this,
+please feel free to comment in [this
+ticket](https://github.com/COALAIP/omi-mvi-1.0/issues/25)
 
 
 ## FAQ
@@ -278,3 +293,17 @@ Specifically [these methods](https://github.com/bigchaindb/pycoalaip-bigchaindb/
 simple! Dunno about querying on those ledgers though. Please reach out to
 tim@bigchaindb.com if you're planning to do this. The COALA IP group would
 be more than happy to hold your hand in implementing!
+
+
+### I get this weird log message when registering a Recording. Is everything OK?
+
+You're probably talking about:
+
+```
+'manifestationOfWork' must be given as a string in the 'data' parameter of a
+'Model'. Given 'None'
+```
+
+If so, everything is alright! We didn't have a lot of time building this, so
+we had take a few short cuts. This error message was one of them. TimDaub
+pledged to fix this in pycoalaip. Call me out on it :D!
