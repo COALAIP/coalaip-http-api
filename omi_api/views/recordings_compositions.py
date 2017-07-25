@@ -23,7 +23,6 @@ from omi_api.queries import bdb_find, unpack
 bdb = BigchainDB(get_bigchaindb_api_url())
 
 recordings_compositions_views = Blueprint('recordings_compositions_views',
-
                                           __name__)
 recordings_compositions_api = Api(recordings_compositions_views)
 
